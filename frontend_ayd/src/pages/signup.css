@@ -1,0 +1,55 @@
+.bg-primary {
+    background-color: #42A5F5;
+}
+
+.bg-accent {
+    background-color: #66BB6A;
+}
+
+.text-charcoal {
+    color: #2C3E50;
+}
+
+.border-primary {
+    border-color: #42A5F5;
+}
+
+.focus\:ring-primary:focus {
+    --tw-ring-color: #42A5F5;
+}
+
+.bg-gradient {
+    background: linear-gradient(to top, #E3F2FD, #90CAF9);
+}
+
+body,
+input,
+select,
+button,
+h2 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.photo-box::after {
+    content: 'Upload Avatar';
+    color: #6C6C6C;
+    font-size: 0.75em;
+    text-align: center;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+input::placeholder,
+select::placeholder {
+    font-size: 0.85em;
+    color: #A0AEC0;
+    /* Faded color for placeholders */
+}
+
+select,
+input[type="date"] {
+    color: #A0AEC0;
+    /* Faded default text */
+}
