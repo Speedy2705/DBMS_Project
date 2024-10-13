@@ -42,3 +42,20 @@ input[type="date"] {
     color: #A0AEC0;
     /* Faded default text */
 }
+
+/* Watermark styling */
+#watermark {
+    opacity: 0.3;
+    position: absolute;
+    width: 26rem;
+    height: auto;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}

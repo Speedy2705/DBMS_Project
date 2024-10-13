@@ -1,25 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Context from './context';
+import { Outlet } from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p className='bg-red-600'>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+        <ToastContainer
+          position='top-center'
+        />
+        <main className='min-h-[calc(100vh-120px)] pt-16'>
+          <Outlet />
+        </main>
 
-    </div>
+    </>
   );
 }
 
