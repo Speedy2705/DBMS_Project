@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import { setUserDetails } from '../store/userSlice';
 import Context from '../context';
 
-const Navbar = () => {
+const Header = () => {
   const user = useSelector(state => state?.user?.user)
   const dispatch = useDispatch()
   const context = useContext(Context)
@@ -36,7 +36,7 @@ const Navbar = () => {
   }
 
   return (
-    <Navbar className='h-16 shadow-md bg-white fixed w-full z-4000'>
+    <nav className='h-16 shadow-md bg-white fixed w-full z-4000'>
       <div className='h-full container mx-auto flex items-center px-4 justify-between'>
         <div>
           <Link to={"/"}>
@@ -97,8 +97,8 @@ const Navbar = () => {
 
         </div>
       </div>
-    </Navbar>
+    </nav>
   )
 }
 
-export default Navbar
+export default Header
