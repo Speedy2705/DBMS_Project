@@ -45,7 +45,7 @@ const Login = () => {
 
     if (dataApi.success) {
       toast.success(dataApi.message)
-      navigate('/')
+      navigate('/Profile')
     }
 
     if (dataApi.error) {
@@ -53,7 +53,7 @@ const Login = () => {
     }
   }
   return (
-    <div class="flex items-center justify-center min-h-screen bg-gradient p-6 relative">
+    <div class="flex items-center justify-center min-h-screen bg-gradient p-6 relative z-0">
       <div id="watermark">
         <img src="AskUrDoc1.png" alt="Watermark" />
       </div>
@@ -84,8 +84,10 @@ const Login = () => {
           </div>
         </form>
 
-        <div class="text-center mt-4">
-          <Link to={"/signup"} class="text-gray-400 hover:text-gray-600 font-semibold">Don't have an account? Sign up here</Link>
+        <div class="text-center mt-4 z-10">
+          <br/>
+          <br/>
+          <Link to={"/signup"} class="text-gray-400 hover:text-gray-600 font-semibold z-10">Don't have an account? Sign up here</Link>
         </div>
       </div>
       <ToastContainer

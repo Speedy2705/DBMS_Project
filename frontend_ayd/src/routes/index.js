@@ -3,11 +3,13 @@ import SignUp from '../pages/SignUp'
 import App from '../App'
 import Login from '../pages/Login'
 import NearbyDoctors from '../pages/NearbyDoctors'
+import Profile from '../pages/Profile'
+import Home from '../pages/home'
 
 const router = createBrowserRouter([
     {
         path : "/",
-        element : <App/>
+        element : <Home/>
     },
     {
         path : "signup",
@@ -19,6 +21,10 @@ const router = createBrowserRouter([
     },{
         path:"Nearbydocs",
         element:<NearbyDoctors/>
+    },
+    {
+        path:"Profile",
+        element:<Profile/>
     }
 ])
 
