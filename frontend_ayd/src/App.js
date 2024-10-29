@@ -2,13 +2,13 @@ import './App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Outlet } from 'react-router-dom';
-import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SummaryApi from './common';
 import { setUserDetails } from './store/userSlice';
 import { useDispatch } from 'react-redux';
 import Context from './context';
 import { useEffect } from 'react';
+import Header from './components/Header.js';
 
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
       <ToastContainer
         position='top-center'
       />
-      <Navbar/>
+      <Header/>
       <main className='min-h-[calc(100vh-120px)] pt-16'>
         <Outlet/>
       </main>
