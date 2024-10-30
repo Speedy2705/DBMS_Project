@@ -8,7 +8,7 @@ import { setUserDetails } from './store/userSlice';
 import { useDispatch } from 'react-redux';
 import Context from './context';
 import { useEffect } from 'react';
-import Header from './components/Header.js';
+import Navbar from './components/Navbar.js';
 
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
       <ToastContainer
         position='top-center'
       />
-      <Header/>
+      <Navbar/>
       <main className='min-h-[calc(100vh-120px)] pt-16'>
         <Outlet/>
       </main>

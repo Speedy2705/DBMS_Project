@@ -1,7 +1,7 @@
 import React from 'react'
 import './signup.css'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SummaryApi from '../common';
 import imageTobase64 from '../helpers/imageTobase64';
 import { toast, ToastContainer } from 'react-toastify';
@@ -77,7 +77,7 @@ const SignUp = () => {
     return (
         <div class="flex items-center justify-center min-h-screen bg-gradient p-6">
             <div id="watermark" className='cursor-wait z-0'>
-                <img src='AskUrDoc1.png' alt="Watermark" />
+                <img src='AskUrDoc1.png' alt="Watermark" className='' />
             </div>
             <div class="bg-white p-8 md:p-12 rounded-3xl w-full max-w-2xl shadow-lg space-y-6">
                 <h2 class="text-3xl font-semibold text-center text-charcoal">Ask Ur Doctor - Sign Up</h2>
@@ -86,8 +86,8 @@ const SignUp = () => {
                 <form onSubmit={handleSubmit} class="space-y-5">
 
                     <div class="flex justify-center">
-                        <div class="photo-box relative w-24 h-24 rounded-full bg-gray-200 shadow-inner overflow-hidden flex items-center justify-center">
-                            <img id="profile-pic" src="" alt="Profile Picture" class="w-full h-full object-cover absolute top-0 left-0 z-1 hidden" />
+                        <div class="photo-box relative w-24 h-24 rounded-full shadow-inner overflow-hidden flex items-center justify-center">
+                            <img id="profile-pic" src='profile_gif.gif' alt="Profile Picture" class="w-full h-full object-cover absolute top-0 left-0 z-5 blur-sm" />
                             <input type="file" id="photo-upload" name="profilePicture" accept="image/*" onChange={handleUploadPic} class="absolute w-full h-full opacity-0 cursor-pointer z-10 bg-transparent" />
                         </div>
                     </div>
@@ -143,6 +143,11 @@ const SignUp = () => {
                         <button type="submit" class="z-10 bg-primary px-8 py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary">Create Account</button>
                     </div>
                 </form>
+                <div class="text-center mt-4 z-10">
+                    <br />
+                    <br />
+                    <Link to={"/login"} class="text-gray-400 hover:text-gray-600 font-semibold z-10">Already have an account? Login here</Link>
+                </div>
             </div>
             <ToastContainer
                 position='top-right'

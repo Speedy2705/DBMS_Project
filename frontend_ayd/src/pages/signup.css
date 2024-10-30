@@ -32,11 +32,12 @@ h2 {
 
 .photo-box::after {
     content: 'Upload Photo';
-    color: #6C6C6C;
-    font-size: 0.75em;
+    color: #323232;
+    font-size: 1em;
+    font-weight: bolder;
     text-align: center;
     position: absolute;
-    bottom: 8px;
+    bottom: 4px;
     left: 50%;
     transform: translateX(-50%);
 }
