@@ -1,4 +1,5 @@
 const backendDomain = "http://localhost:8080"
+const mysqlDomain = "http://localhost:5000"
 
 const SummaryApi = {
     signUp : {
@@ -23,6 +24,10 @@ const SummaryApi = {
     },
     updateUser : {
         url : `${backendDomain}/api/update-user`,
+        method : 'post'
+    },
+    addDoctor : {
+        url : `${mysqlDomain}/api/addDoctor`,
         method : 'post'
     }
 }
