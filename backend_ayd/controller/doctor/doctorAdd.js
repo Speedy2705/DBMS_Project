@@ -1,8 +1,9 @@
-const connectMySQL = require('../../config/mysql');
+const { mySQLdb } = require("../../config/mysql");
+
 
 function generateDoctorId(callback) {
-    const sql = 'SELECT MAX(doctor_id) AS max_id FROM doctor';
-    connectMySQL.query(sql, (err, result) => {
+    const sql = 'SELECT MAX(doctor_id) AS max_id FROM doctors_profile';
+    mySQLdb.query(sql, (err, result) => {
         if (err) {
             return callback(err);
         }
@@ -12,31 +13,31 @@ function generateDoctorId(callback) {
     });
 }
 
-function doctorAddController(req, res){
+function doctorAddController(req, res) {
     generateDoctorId((err, newDoctorId) => {
         if (err) {
             return res.status(500).send('Server error');
         }
 
-        const { full_name, distance, image, address, contact, pincode } = req.body;
-        const sql = 'INSERT INTO doctors_profile (doctor_id, full_name, distance, image, address, contact, pincode) VALUES (?, ?, ?, ?, ?, ?, ?)';
-        const sql_connect = 'INSERT INTO doctors_speciality (doctor_id, body_part)';
-        const values1 = [newDoctorId, full_name, distance, image, address, contact, pincode];
-        const values2 = [newDoctorId, speciality];
+        const { full_name, distance, image, address, contact, pincode, speciality } = req.body;
+        const doctorProfileSQL = 'INSERT INTO doctors_profile (doctor_id, full_name, distance, image, address, contact, pincode) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        const doctorSpecialitySQL = 'INSERT INTO doctors_speciality (doctor_id, body_part) VALUES (?, ?)';
+        const doctorValues = [newDoctorId, full_name, distance, image, address, contact, pincode];
+        const specialityValues = [newDoctorId, speciality];
 
-        connectMySQL.query(sql, values1, (err, result) => {
+        mySQLdb.query(doctorProfileSQL, doctorValues, (err, result) => {
             if (err) {
                 return res.status(500).send('Server error');
             }
-            res.send('Doctor added successfully');
-        });
-        connectMySQL.query(sql_connect, values2, (err, result) => {
-            if (err) {
-                return res.status(500).send('Server error');
-            }
-            res.send('Speciality also added successfully');
+
+            mySQLdb.query(doctorSpecialitySQL, specialityValues, (err, result) => {
+                if (err) {
+                    return res.status(500).send('Server error');
+                }
+                res.send('Doctor and speciality added successfully');
+            });
         });
     });
-};
+}
 
-module.exports = doctorAddController
+module.exports = doctorAddController;

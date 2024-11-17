@@ -18,13 +18,12 @@ router.post("/signup",userSignUpController)
 router.post("/signin",userSignInController)
 router.get("/user-details",authToken,userDetailsController)
 router.get("/userLogout",userLogout)
-//
+
 router.post('/calories', calorieController.addCalorieRecord);
 router.get('/calories/:email', calorieController.getCalorieRecords);
 router.put('/calories/:email/:date', calorieController.updateCalorieRecord);
 router.delete('/calories/:email/:date', calorieController.deleteCalorieRecord)
 
-
-router.post("/addDoctor",authToken,doctorAddController)
+router.post("/addDoctor",doctorAddController)
 
 module.exports = router

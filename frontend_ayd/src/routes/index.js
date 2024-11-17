@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import SignUp from '../pages/SignUp'
-import Login from '../pages/Login'
+import Login from '../pages/login'
 import NearbyDoctors from '../pages/NearbyDoctors'
 import Profile from '../pages/Profile'
 import Home from '../pages/home'

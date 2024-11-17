@@ -6,7 +6,7 @@ const router = require('./routes/index')
 const cookieParser = require('cookie-parser')
 
 const bodyParser = require('body-parser');
-const connectMySQL = require('./config/mysql')
+const { connectMySQL } = require('./config/mysql')
 const app = express();
 
 app.use(bodyParser.json());
