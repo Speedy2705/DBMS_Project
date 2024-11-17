@@ -21,7 +21,7 @@ function doctorAddController(req, res) {
 
         const { full_name, distance, image, address, contact, pincode, speciality } = req.body;
         const doctorProfileSQL = 'INSERT INTO doctors_profile (doctor_id, full_name, distance, image, address, contact, pincode) VALUES (?, ?, ?, ?, ?, ?, ?)';
-        const doctorSpecialitySQL = 'INSERT INTO doctors_speciality (doctor_id, body_part) VALUES (?, ?)';
+        const doctorSpecialitySQL = 'INSERT INTO doctor_speciality (doctor_id, body_part) VALUES (?, ?)';
         const doctorValues = [newDoctorId, full_name, distance, image, address, contact, pincode];
         const specialityValues = [newDoctorId, speciality];
 
