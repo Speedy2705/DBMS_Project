@@ -29,7 +29,16 @@ const SummaryApi = {
     addDoctor : {
         url : `${mysqlDomain}/api/addDoctor`,
         method : 'post'
+    },
+    calories : {  // New endpoint for calorie data submission
+        url : `${backendDomain}/api/calories`,
+        method : 'post'
+    },
+    getcalories:{
+        url: `${backendDomain}/api/calories`,
+        method: 'get'
     }
+
 }
 
 
