@@ -45,7 +45,8 @@ const Login = () => {
 
     if (dataApi.success) {
       toast.success(dataApi.message)
-      navigate('/Profile')
+      localStorage.setItem("authToken", dataApi.token);
+      navigate('/healthtracker')
     }
 
     if (dataApi.error) {

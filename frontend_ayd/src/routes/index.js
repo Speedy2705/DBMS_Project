@@ -5,6 +5,8 @@ import NearbyDoctors from '../pages/NearbyDoctors'
 import Profile from '../pages/Profile'
 import Home from '../pages/home'
 import App from '../App'
+import Health from '../pages/Health.js'
+import CalorieRecords from '../pages/sample.js'
 
 const router = createBrowserRouter([
     {
@@ -22,7 +24,7 @@ const router = createBrowserRouter([
             {
                 path: "login",
                 element: <Login />
-            }, 
+            },
             {
                 path: "nearbydocs",
                 element: <NearbyDoctors />
@@ -30,6 +32,13 @@ const router = createBrowserRouter([
             {
                 path: "profile",
                 element: <Profile />
+            },
+            {
+                path:"healthTracker",
+                element:<Health/>
+            },{
+                path:"test",
+                element:<CalorieRecords/>
             }
         ]
     }
