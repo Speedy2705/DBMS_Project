@@ -7,6 +7,8 @@ import Home from '../pages/home'
 import App from '../App'
 import Health from '../pages/Health.js'
 import CalorieRecords from '../pages/sample.js'
+import AdminPanel from '../pages/AdminPanel.js'
+import AllUsers from '../pages/AllUsers.js'
 
 const router = createBrowserRouter([
     {
@@ -39,6 +41,20 @@ const router = createBrowserRouter([
             },{
                 path:"test",
                 element:<CalorieRecords/>
+            },
+            {
+                path : "admin-panel",
+                element : <AdminPanel/>,
+                children : [
+                    {
+                        path : "all-users",
+                        element : <AllUsers/>
+                    },
+                    // {
+                    //     path : "all-doctors",
+                    //     element : <AllDoctors/>
+                    // }
+                ]
             }
         ]
     }

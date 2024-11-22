@@ -15,7 +15,7 @@ const SignUp = () => {
         gender: "",
         dateOfBirth: null,
         confirmPassword: "",
-        profilePicture: ""
+        profilePictureture: ""
     })
     const navigate = useNavigate();
 
@@ -60,9 +60,9 @@ const SignUp = () => {
     }
 
     const handleUploadPic = async (e) => {
-        const profilePic = document.getElementById('profile-pic');
-        profilePic.src = URL.createObjectURL(e.target.files[0]);
-        profilePic.classList.remove('hidden');
+        const profilePicture = document.getElementById('profile-pic');
+        profilePicture.src = URL.createObjectURL(e.target.files[0]);
+        profilePicture.classList.remove('hidden');
         const file = e.target.files[0]
 
         const imagePic = await imageTobase64(file)
@@ -70,7 +70,7 @@ const SignUp = () => {
         setData((preve) => {
             return {
                 ...preve,
-                profilePic: imagePic
+                profilePicture: imagePic
             }
         })
     }

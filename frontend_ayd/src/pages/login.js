@@ -81,7 +81,7 @@ const Login = () => {
           </div>
 
           <div class="flex justify-center mt-6">
-            <button type="submit" class="z-10 px-8 py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary">Submit Credentials</button>
+            <button class="z-10 px-8 py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary">Submit Credentials</button>
           </div>
         </form>
 

@@ -5,11 +5,11 @@ async function updateUser(req,res){
 
         const sessionUser = req.userId
 
-        const { userId, email, name, role } = req.body
+        const { userId, email, username, role } = req.body
 
         const payload ={
             ...(email && {email : email}),
-            ...(name && {name : name}),
+            ...(username && {username : username}),
             ...(role && {role : role}),
         }
 
