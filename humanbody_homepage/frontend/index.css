@@ -1,3 +1,60 @@
+.bg-primary {
+    background-color: #42A5F5;
+}
+
+.bg-accent {
+    background-color: #66BB6A;
+}
+
+.text-charcoal {
+    color: #2C3E50;
+}
+
+.border-primary {
+    border-color: #42A5F5;
+}
+
+.focus\:ring-primary:focus {
+    --tw-ring-color: #42A5F5;
+}
+
+.bg-gradient {
+    background: linear-gradient(to top, #5bb3f1, #90CAF9);
+}
+
+body,
+input,
+select,
+button,
+h2 {
+    font-family: 'Poppins', sans-serif;
+}
+
+input::placeholder {
+    font-size: 0.85em;
+    color: #287dec;
+}
+
+select,
+input[type="date"] {
+    color: #5d8fd1;
+}
+
+.photobox {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #42A5F5;
+    overflow: hidden;
+    margin: auto;
+}
+
+.photobox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .container {
     display: flex;
     align-items: center;
@@ -5,7 +62,7 @@
     padding: 20px;
     border: 2px solid #699ad6;
     border-radius: 10px;
-    //background-color: #7aa9ee;
+    background-color: #7aa9ee;
 }
 
 .human-body {

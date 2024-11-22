@@ -11,9 +11,7 @@ const doctorAddController = require('../controller/doctor/doctorAdd')
 const calorieController = require("../controller/calorie/calorieController")
 const updateUser = require('../controller/user/udateUser')
 const allUsers = require('../controller/user/allUsers')
-
-
-
+const allDoctorDetails = require('../controller/doctor/allDoctorDetails')
 
 router.get("/all-user",authToken,allUsers)
 router.post("/update-user",authToken,updateUser)
@@ -28,5 +26,6 @@ router.put('/calories/:email/:date', calorieController.updateCalorieRecord);
 router.delete('/calories/:email/:date', calorieController.deleteCalorieRecord)
 
 router.post("/addDoctor",doctorAddController)
+router.get("/allDoctor",allDoctorDetails)
 
 module.exports = router

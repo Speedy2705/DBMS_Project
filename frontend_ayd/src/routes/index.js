@@ -9,6 +9,7 @@ import Health from '../pages/Health.js'
 import CalorieRecords from '../pages/sample.js'
 import AdminPanel from '../pages/AdminPanel.js'
 import AllUsers from '../pages/AllUsers.js'
+import AllDoctors from '../pages/AllDoctors.js'
 
 const router = createBrowserRouter([
     {
@@ -50,10 +51,10 @@ const router = createBrowserRouter([
                         path : "all-users",
                         element : <AllUsers/>
                     },
-                    // {
-                    //     path : "all-doctors",
-                    //     element : <AllDoctors/>
-                    // }
+                    {
+                        path : "all-doctors",
+                        element : <AllDoctors/>
+                    }
                 ]
             }
         ]

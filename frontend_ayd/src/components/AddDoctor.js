@@ -60,7 +60,7 @@ const AddDoctor = ({
 
         const responseData = await response.json()
         console.log(responseData);
-        
+
         if (responseData.success) {
             toast.success(responseData?.message)
             onClose()
@@ -123,12 +123,12 @@ const AddDoctor = ({
                     <select required value={data.speciality} name='speciality' onChange={handleChange} className='py-2 px-3 bg-slate-900 border rounded-xl text-slate-400'>
                         <option value={""}>select speciality</option>
                         {
-                        bodyParts.map((el,index)=>{
-                            return (
-                                <option value={el.bodyPart} key={el.bodyPart+index}>{el.speciality} : {el.bodyPart}</option>
-                            )
-                        })
-                    }
+                            bodyParts.map((el, index) => {
+                                return (
+                                    <option value={el.bodyPart} key={el.bodyPart + index}>{el.speciality} : {el.bodyPart}</option>
+                                )
+                            })
+                        }
                     </select>
 
                     <label htmlFor='contact' className='mt-3'>Contact Details :</label>
