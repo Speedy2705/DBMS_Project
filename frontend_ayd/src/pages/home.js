@@ -1,11 +1,12 @@
 import React from 'react'
-import AddDoctor from '../components/AddDoctor'
+import HumanBody from '../components/HumanBody'
 
 const Home = () => {
   
   return (
     <div>
-      Home
+      <HumanBody/>
+      
     </div>
   )
 }
