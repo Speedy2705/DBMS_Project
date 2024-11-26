@@ -1,14 +1,11 @@
-import React, { useState } from 'react'
-import { CgClose } from 'react-icons/cg'
-import SummaryApi from '../common'
-import { toast } from 'react-toastify'
-import imageTobase64 from '../helpers/imageTobase64'
-import bodyParts from '../helpers/bodyParts'
+import React, { useEffect, useState } from 'react';
+import { CgClose } from 'react-icons/cg';
+import SummaryApi from '../common';
+import { toast } from 'react-toastify';
+import imageTobase64 from '../helpers/imageTobase64';
+import bodyParts from '../helpers/bodyParts';
 
-const AddDoctor = ({
-    onClose,
-    fetchData
-}) => {
+const EditDoctor = ({ doctorId, onClose, fetchDoctors }) => {
     const [data, setData] = useState({
         full_name: '',
         distance: '',
@@ -17,81 +14,95 @@ const AddDoctor = ({
         address: '',
         contact: '',
         pincode: ''
-    })
+    });
+
 
     const handleChange = (e) => {
-        const { name, value } = e.target
+        const { name, value } = e.target;
+        setData((prev) => ({
+            ...prev,
+            [name]: value
+        }));
+    };
 
-        setData((preve) => {
-            return {
-                ...preve,
-                [name]: value
+    const fetchDoctorDetails = async () => {
+        try {
+            const response = await fetch(`${SummaryApi.getDoctorDetails.url}/${doctorId}`, {
+                method: SummaryApi.getDoctorDetails.method,
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
             }
-        })
-
-    }
+            const data = await response.json();
+            setData(data);
+        } catch (error) {
+            console.error('Error fetching doctor details:', error);
+        }
+    };
 
     const handleUploadPic = async (e) => {
         const image = document.getElementById('profile-pic');
         image.src = URL.createObjectURL(e.target.files[0]);
         image.classList.remove('hidden');
-        const file = e.target.files[0]
+        const file = e.target.files[0];
 
-        const imagePic = await imageTobase64(file)
+        const imagePic = await imageTobase64(file);
 
-        setData((preve) => {
-            return {
-                ...preve,
-                image: imagePic
-            }
-        })
-    }
+        setData((prev) => ({
+            ...prev,
+            image: imagePic
+        }));
+    };
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        const response = await fetch(SummaryApi.addDoctor.url, {
-            method: SummaryApi.addDoctor.method,
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
+        try {
+            const response = await fetch(`${SummaryApi.editDoctor.url}/${doctorId}`, {
+                method: SummaryApi.editDoctor.method,
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
 
-        const responseData = await response.json()
-        console.log(responseData);
+            const responseData = await response.json();
+            console.log(responseData);
 
-        if (responseData.success) {
-            toast.success(responseData?.message)
-            onClose()
-            fetchData()
+            if (responseData.success) {
+                toast.success(responseData?.message);
+                onClose();
+                fetchDoctors();
+            } else {
+                toast.error(responseData?.message);
+            }
+        } catch (error) {
+            console.error('Error updating doctor:', error);
+            toast.error('Failed to update doctor details');
         }
+    };
 
-        if (responseData.error) {
-            toast.error(responseData?.message)
-        }
-
-    }
+    useEffect(() => {
+        fetchDoctorDetails();
+    }, [doctorId]);
 
     return (
         <div className='text-white fixed w-full h-full top-0 left-0 flex justify-center items-center backdrop-blur-sm'>
             <div className='bg-black p-4 rounded-3xl w-full max-w-2xl h-full max-h-[80%] overflow-hidden'>
-
                 <div className='flex justify-between items-center pb-3'>
-                    <h2 className='font-bold text-lg'>Add Doctor</h2>
+                    <h2 className='font-bold text-lg'>Edit Doctor</h2>
                     <div className='w-fit ml-auto text-2xl hover:text-red-600 cursor-pointer' onClick={onClose}>
                         <CgClose />
                     </div>
                 </div>
 
-
                 <form className='grid p-4 gap-2 overflow-y-scroll h-full scrollbar-none' onSubmit={handleSubmit}>
                     <label htmlFor='image' className='mt-3'></label>
                     <label htmlFor='uploadImageInput'>
-                        <div class="flex justify-center">
-                            <div class="photo-box relative w-24 h-24 rounded-full shadow-inner overflow-hidden flex items-center justify-center">
-                                <img id="profile-pic" src='profile_gif.gif' alt="Profile Picture" class="w-full h-full object-cover absolute top-0 left-0 z-5 blur-sm" />
-                                <input type="file" id="uploadImageInput" name="image" accept="image/*" onChange={handleUploadPic} class="absolute w-full h-full opacity-0 cursor-pointer z-10 bg-transparent" />
+                        <div className="flex justify-center">
+                            <div className="photo-box relative w-24 h-24 rounded-full shadow-inner overflow-hidden flex items-center justify-center">
+                                <img id="profile-pic" src='profile_gif.gif' alt="Profile Picture" className="w-full h-full object-cover absolute top-0 left-0 z-5 blur-sm" />
+                                <input type="file" id="uploadImageInput" name="image" accept="image/*" onChange={handleUploadPic} className="absolute w-full h-full opacity-0 cursor-pointer z-10 bg-transparent" />
                             </div>
                         </div>
                     </label>
@@ -100,7 +111,7 @@ const AddDoctor = ({
                     <input
                         type='text'
                         id='full_name'
-                        placeholder='enter doctor name'
+                        placeholder='Enter doctor name'
                         name='full_name'
                         value={data.full_name}
                         onChange={handleChange}
@@ -112,7 +123,7 @@ const AddDoctor = ({
                     <input
                         type='text'
                         id='distance'
-                        placeholder='enter distance'
+                        placeholder='Enter distance'
                         name='distance'
                         value={data.distance}
                         onChange={handleChange}
@@ -121,13 +132,11 @@ const AddDoctor = ({
 
                     <label htmlFor='speciality' className='mt-3'>Speciality :</label>
                     <select required value={data.speciality} name='speciality' onChange={handleChange} className='py-2 px-3 bg-slate-900 border rounded-xl text-slate-400'>
-                        <option value={""}>select speciality</option>
+                        <option value={""}>Select speciality</option>
                         {
-                            bodyParts.map((el, index) => {
-                                return (
-                                    <option value={el.bodyPart} key={el.bodyPart + index}>{el.speciality} : {el.bodyPart}</option>
-                                )
-                            })
+                            bodyParts.map((el, index) => (
+                                <option value={el.bodyPart} key={el.bodyPart + index}>{el.speciality} : {el.bodyPart}</option>
+                            ))
                         }
                     </select>
 
@@ -136,7 +145,7 @@ const AddDoctor = ({
                         required
                         type='number'
                         id='contact'
-                        placeholder='enter contact'
+                        placeholder='Enter contact'
                         name='contact'
                         value={data.contact}
                         onChange={handleChange}
@@ -148,7 +157,7 @@ const AddDoctor = ({
                         required
                         type='number'
                         id='pincode'
-                        placeholder='enter pincode'
+                        placeholder='Enter pincode'
                         name='pincode'
                         value={data.pincode}
                         onChange={handleChange}
@@ -158,22 +167,18 @@ const AddDoctor = ({
                     <label htmlFor='address' className='mt-3'>Address :</label>
                     <textarea
                         className='h-28 bg-slate-900 border resize-none px-3 py-2 rounded-xl'
-                        placeholder='enter doctor address'
-                        rows={3} cols={5}
+                        placeholder='Enter doctor address'
+                        rows={3}
                         value={data.address}
                         name='address'
                         onChange={handleChange}
-                    >
+                    ></textarea>
 
-                    </textarea>
-
-                    <button className='px-3 py-2 bg-red-600 text-white mb-10 hover:bg-red-700'>Add Doctor</button>
+                    <button className='px-3 py-2 bg-red-600 text-white mb-10 hover:bg-red-700'>Update Doctor</button>
                 </form>
-
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default AddDoctor
+export default EditDoctor;

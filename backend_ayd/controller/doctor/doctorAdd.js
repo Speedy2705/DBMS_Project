@@ -3,7 +3,7 @@ const { mySQLdb } = require("../../config/mysql");
 async function generateDoctorId() {
     const sql = 'SELECT MAX(doctor_id) AS max_id FROM doctors_profile';
     try {
-        const [result] = await mySQLdb.promise().query(sql);
+        const [result] = await mySQLdb.query(sql);
         const maxId = result[0]?.max_id || 0;
         return (maxId + 1).toString().padStart(4, '0');
     } catch (err) {
@@ -20,8 +20,8 @@ async function doctorAddController(req, res) {
         const doctorValues = [newDoctorId, full_name, distance, image, address, contact, pincode];
         const specialityValues = [newDoctorId, speciality];
 
-        await mySQLdb.promise().query(doctorProfileSQL, doctorValues);
-        await mySQLdb.promise().query(doctorSpecialitySQL, specialityValues);
+        await mySQLdb.query(doctorProfileSQL, doctorValues);
+        await mySQLdb.query(doctorSpecialitySQL, specialityValues);
 
         res.json({ message: 'Doctor and speciality added successfully' });
     } catch (err) {

@@ -23,29 +23,6 @@
     animation: pop-up 0.3s ease-in-out;
 }
 
-/* Define the shrinking animation */
-@keyframes shrink-down {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(0.5);
-        opacity: 0.5;
-    }
-
-    100% {
-        transform: scale(0);
-        opacity: 0;
-    }
-}
-
-.shrink-down {
-    animation: shrink-down 0.5s forwards;
-}
-
-
 .human-body {
     width: 500px;
     position: relative;

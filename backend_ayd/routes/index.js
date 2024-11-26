@@ -12,6 +12,9 @@ const calorieController = require("../controller/calorie/calorieController")
 const updateUser = require('../controller/user/udateUser')
 const allUsers = require('../controller/user/allUsers')
 const allDoctorDetails = require('../controller/doctor/allDoctorDetails')
+const { getBodyPartDetails, editBodyPartDetails } = require('../controller/bodyPart/addHumanBodyPart')
+const deleteDoctor = require('../controller/doctor/deleteDoctor')
+const { editDoctor, getDoctorDetails } = require('../controller/doctor/editDoctor')
 
 router.get("/all-user",authToken,allUsers)
 router.post("/update-user",authToken,updateUser)
@@ -27,5 +30,11 @@ router.delete('/calories/:email/:date', calorieController.deleteCalorieRecord)
 
 router.post("/addDoctor",doctorAddController)
 router.get("/allDoctor",allDoctorDetails)
+router.get('/allDoctor/:doctorId',getDoctorDetails)
+router.put('/editDoctor/:doctorId', editDoctor)
+router.delete('/deleteDoctor/:doctorId', deleteDoctor)
+
+router.post("/human_body",editBodyPartDetails)
+router.get('/human_body/:bodyPart', getBodyPartDetails);
 
 module.exports = router

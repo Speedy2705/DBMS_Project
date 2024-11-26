@@ -94,7 +94,7 @@ const Navbar = () => {
                 <nav>
                   {user?.role === ROLE.ADMIN && (
                     <Link
-                      to={"/admin-panel"}
+                      to={"/admin-panel/all-users"}
                       className='block whitespace-nowrap hover:bg-slate-100 p-2'
                       onClick={() => setMenuDisplay(false)}
                     >
