@@ -7,7 +7,7 @@ import bodyParts from '../helpers/bodyParts'
 
 const AddDoctor = ({
     onClose,
-    fetchData
+    fetchDoctors
 }) => {
     const [data, setData] = useState({
         full_name: '',
@@ -64,7 +64,7 @@ const AddDoctor = ({
         if (responseData.success) {
             toast.success(responseData?.message)
             onClose()
-            fetchData()
+            fetchDoctors()
         }
 
         if (responseData.error) {
