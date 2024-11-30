@@ -1,12 +1,11 @@
 import React from 'react'
-import HumanBody from '../components/HumanBody'
+import NearbyDoctors from '../components/NearbyDoctors'
 
 const Home = () => {
   
   return (
     <div>
-      <HumanBody/>
-      
+      <NearbyDoctors/>
     </div>
   )
 }

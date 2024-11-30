@@ -16,6 +16,7 @@ const { getBodyPartDetails, editBodyPartDetails } = require('../controller/bodyP
 const deleteDoctor = require('../controller/doctor/deleteDoctor')
 const { editDoctor, getDoctorDetails } = require('../controller/doctor/editDoctor')
 const allstudentdetails = require('../controller/bloodBank/allstudents')
+const getDoctorsByPincodeAndSpecialty = require('../controller/doctor/nearbyDoctor')
 
 router.get("/all-user",authToken,allUsers)
 router.post("/update-user",authToken,updateUser)
@@ -34,11 +35,11 @@ router.get("/allDoctor",allDoctorDetails)
 router.get('/allDoctor/:doctorId',getDoctorDetails)
 router.put('/editDoctor/:doctorId', editDoctor)
 router.delete('/deleteDoctor/:doctorId', deleteDoctor)
-
+router.get('/nearbyDoctors',getDoctorsByPincodeAndSpecialty)
 
 router.get("/students",allstudentdetails)
 
-//router.post("/human_body",editBodyPartDetails)
-//router.get('/human_body/:bodyPart', getBodyPartDetails);
+router.post("/human_body",editBodyPartDetails)
+router.get('/human_body/:bodyPart', getBodyPartDetails);
 
 module.exports = router

@@ -9,9 +9,12 @@ const HumanBody = () => {
     const fetchBodyPartDetails = async (position) => {
         try {
             const response = await fetch(SummaryApi.human_Body.url +"/"+ position,{
-                method: SummaryApi.human_Body.method
+                method: SummaryApi.human_Body.method,
+                credentials: 'include'
             });
             const data = await response.json();
+            console.log(data);
+            
             return data;
         } catch (error) {
             console.error('Error fetching body part details:', error);
@@ -42,7 +45,7 @@ const HumanBody = () => {
     };
 
     return (
-        <div className='w-[calc(1300px)] flex justify-end'>
+        <div className='w-[calc(80px)] flex justify-end'>
             <div onClick={handleClick} className="w-fit mt-5 h-[calc(550px)] relative">
                 <div className="human-body w-52 h-[calc(500px)] bottom-24 relative">
                     <svg data-position="head" id="head" className="head" xmlns="http://www.w3.org/2000/svg" width="56.594" height="95.031" viewBox="0 0 56.594 95.031">

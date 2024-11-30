@@ -46,6 +46,10 @@ const SummaryApi = {
         url: `${mysqlDomain}/api/editDoctor`,
         method: 'put'
     },
+    nearbyDoctors: {
+        url: `${backendDomain}/api/nearbyDoctors`, 
+        method: 'get'
+    },
     human_Body: {
         url: `${mysqlDomain}/api/human_body`,
         method: 'get'
