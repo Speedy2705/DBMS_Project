@@ -3,6 +3,7 @@ import { MdDelete, MdEdit } from 'react-icons/md';
 import EditDoctor from '../components/EditDoctor';
 import AddDoctor from '../components/AddDoctor'
 import SummaryApi from '../common';
+import { toast } from 'react-toastify';
 
 const AllDoctors = () => {
     const [doctors, setDoctors] = useState([]);
@@ -31,11 +32,18 @@ const AllDoctors = () => {
             const response = await fetch(`${SummaryApi.deleteDoctor.url}/${doctorId}`, {
                 method: SummaryApi.deleteDoctor.method,
             });
+
             const data = await response.json();
-            console.log('Delete success:', data);
-            fetchDoctors(); // Refresh the doctor list after deletion
+
+            if (response.ok) {
+                toast.success('Doctor deleted successfully!');
+                fetchDoctors();
+            } else {
+                toast.error(data.message || 'Failed to delete the doctor.');
+            }
         } catch (error) {
             console.error('Error deleting doctor:', error);
+            toast.error('An error occurred while deleting the doctor.');
         }
     };
 

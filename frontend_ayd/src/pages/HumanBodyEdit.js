@@ -8,7 +8,7 @@ const HumanBodyEdit = () => {
 
     const fetchBodyPartDetails = async (position) => {
         try {
-            const response = await fetch(SummaryApi.human_Body.url +"/"+ position,{
+            const response = await fetch(SummaryApi.human_Body.url + "/" + position, {
                 method: SummaryApi.human_Body.method
             });
             const data = await response.json();
@@ -39,37 +39,36 @@ const HumanBodyEdit = () => {
         setInfo({ position: '', x: 0, y: 0, cut: '', pain: '', swell: '' });
     };
 
-    const handleSave = (data) => { 
-        const { cut, pain, swell } = data; 
-        const newInfo = { ...info, cut, pain, swell }; 
-        setInfo(newInfo); 
-        fetch(SummaryApi.addHumanBody.url, { 
-            method: SummaryApi.addHumanBody.method, 
-            headers: { 
-                'Content-Type': 'application/json', 
-            }, 
-            body: JSON.stringify(newInfo), 
-        }) 
-        .then(response => response.json()) 
-        .then(data => console.log('Success:', data)) 
-        .catch(error => console.error('Error:', error)); 
+    const handleSave = (data) => {
+        const { cut, pain, swell } = data;
+        const newInfo = { ...info, cut, pain, swell };
+        setInfo(newInfo);
+        fetch(SummaryApi.addHumanBody.url, {
+            method: SummaryApi.addHumanBody.method,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newInfo),
+        })
+            .then(response => response.json())
+            .then(data => console.log('Success:', data))
+            .catch(error => console.error('Error:', error));
         handleClose();
     };
-    useEffect(() => { 
-        const fetchData = async () => { 
-            if (info.position) { 
+    useEffect(() => {
+        const fetchData = async () => {
+            if (info.position) {
                 const details = await fetchBodyPartDetails(info.position);
-                console.log(details,info.position);
-                setInfo(prevInfo => ({ 
-                    ...prevInfo, 
-                    cut: details.cut, 
-                    pain: details.pain, 
-                    swell: details.swell, 
-                })); 
-            } 
-        }; 
+                console.log(details, info.position);
+                setInfo(prevInfo => ({
+                    ...prevInfo,
+                    cut: details.cut,
+                    pain: details.pain,
+                    swell: details.swell,
+                }));
+            }
+        };
         fetchData();
-         
     }, [info.position]);
 
     return (
@@ -94,7 +93,7 @@ const HumanBodyEdit = () => {
                     <svg data-position='left-foot' id='left-foot' class='left-foot' xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><path d='m 19.558357,1.92821 c -22.1993328,20.55867 -11.0996668,10.27933 0,0 z m 5.975,5.989 -0.664,18.415 -1.55,6.435 -4.647,0 -1.327,-4.437 -1.55,-0.222 0.332,4.437 -5.864,-1.778 -1.5499998,-0.887 -6.64,-1.442 -0.22,-5.214 6.418,-10.87 4.4259998,-5.548 c 9.991542,-3.26362 9.41586,-8.41457 12.836,1.111 z' /></svg>
                     <svg data-position='right-foot' id='right-foot' class='right-foot' xmlns='http://www.w3.org/2000/svg' width='90' height='38.938' viewBox='0 0 90 38.938'><path d='m 11.723492,2.35897 c -40.202667,20.558 -20.1013335,10.279 0,0 z m -5.9740005,5.989 0.663,18.415 1.546,6.435 4.6480005,0 1.328,-4.437 1.55,-0.222 -0.333,4.437 5.863,-1.778 1.55,-0.887 6.638,-1.442 0.222,-5.214 -6.418,-10.868 -4.426,-5.547 -10.8440005,-4.437 z' /> </svg>
                     {info.position &&
-                        <InfoBoxEdit 
+                        <InfoBoxEdit
                             position={info.position}
                             x={-350}
                             y={-140}
@@ -102,7 +101,7 @@ const HumanBodyEdit = () => {
                             pain={info.pain}
                             swell={info.swell}
                             onClose={handleClose}
-                            onSave={handleSave} 
+                            onSave={handleSave}
                         />}
                 </div>
             </div>

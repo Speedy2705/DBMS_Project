@@ -1,7 +1,7 @@
 const { mySQLdb } = require("../../config/mysql");
 
 async function allstudentdetails(req, res) {
-    const studentSQL = `SELECT * FROM students`;
+    const studentSQL = `SELECT * FROM student inner join contact on student.roll_number=contact.roll_number`;
 
     try {
         const [students] = await mySQLdb.query(studentSQL);

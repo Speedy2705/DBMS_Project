@@ -6,7 +6,7 @@ const addCalorieRecord = async (req, res) => {
         const { email, caloriecount, date } = req.body;
 
         // Check if a record for this date and email already exists
-        const existingRecord = await Calorie.findOne({ email, date });
+        const existingRecord = await Calorie.findOne({ email, date,caloriecount });
         if (existingRecord) {
             return res.status(400).json({ message: 'Record already exists for this date and email' });
         }
@@ -18,7 +18,7 @@ const addCalorieRecord = async (req, res) => {
         });
 
         await newRecord.save();
-        res.status(201).json(newRecord);
+        res.status(201).json({newRecord,success:true});
     } catch (error) {
         res.status(500).json({ message: 'Error adding calorie record', error });
     }
