@@ -70,11 +70,11 @@ const EditDoctor = ({ doctorId, onClose, fetchDoctors }) => {
             console.log(responseData);
 
             if (responseData.success) {
-                toast.success(responseData?.message);
+                toast.success(responseData.message);
                 onClose();
                 fetchDoctors();
             } else {
-                toast.error(responseData?.message);
+                toast.error(responseData.message);
             }
         } catch (error) {
             console.error('Error updating doctor:', error);

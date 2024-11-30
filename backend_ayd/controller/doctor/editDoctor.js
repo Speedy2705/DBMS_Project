@@ -41,7 +41,7 @@ const editDoctor = async (req, res) => {
     const [updateSpecialityResult] = await mySQLdb.query(updateSpecialitySQL, [speciality, doctorId]);
 
     if (updateDoctorResult.affectedRows > 0 || updateSpecialityResult.affectedRows > 0) {
-      res.send({ message: 'Doctor details updated successfully' });
+      res.send({ message: 'Doctor details updated successfully',success:true });
     } else {
       res.status(404).send({ message: 'Doctor not found' });
     }
