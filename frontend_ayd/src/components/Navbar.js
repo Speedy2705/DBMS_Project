@@ -54,18 +54,10 @@ const Navbar = () => {
     <nav className='h-16 shadow-md bg-white fixed w-full z-10'>
       <div className='h-full container mx-auto flex items-center px-4 justify-between'>
         {/* Logo Section */}
-        <div>
+        <div className='flex items-center'>
           <Link to={"/"}>
-            <Logo />
+             <img src='askurdoc_remove_bg.png' className='h-16' />
           </Link>
-        </div>
-
-        {/* Search Bar */}
-        <div className='hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-2'>
-          <input type='text' placeholder='search product here...' className='w-full outline-none' />
-          <div className='text-lg min-w-[50px] h-8 flex items-center justify-center rounded-r-full bg-red-600 text-white'>
-            <GrSearch />
-          </div>
         </div>
 
         {/* User Options */}
@@ -80,11 +72,11 @@ const Navbar = () => {
                 {user?.profilePicture ? (
                   <img
                     src={user?.profilePicture}
-                    className='w-10 h-10 rounded-full'
+                    className='w-10 h-10 rounded-full border-2 border-gray-300'
                     alt={user?.name}
                   />
                 ) : (
-                  <FaRegCircleUser />
+                  <FaRegCircleUser  className='text-gray-600' />
                 )}
               </div>
             )}
@@ -112,20 +104,28 @@ const Navbar = () => {
               </div>
             )}
           </div>
+          <div>
+            <Link
+              to={"/blood-bank"}
+              className='px-4 py-2 rounded-full text-white bg-blue-600 hover:bg-blue-700 transition duration-300'
+            >
+              Blood Bank
+            </Link>
+          </div>
 
           {/* Login/Logout Button */}
           <div>
             {user?._id ? (
               <button
                 onClick={handleLogout}
-                className='px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700'
+                className='px-4 py-2 rounded-full text-white bg-red-600 hover:bg-red-700 transition duration-300'
               >
                 Logout
               </button>
             ) : (
               <Link
                 to={"login"}
-                className='px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700'
+                className='px-4 py-2 rounded-full text-white bg-red-600 hover:bg-red-700 transition duration-300'
               >
                 Login
               </Link>

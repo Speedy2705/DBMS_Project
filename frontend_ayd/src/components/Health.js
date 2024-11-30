@@ -159,6 +159,30 @@ const Health = () => {
     }, []);
 
 
+    const handleDeleteRecord = async (date) => {
+        const url = `${SummaryApi.deletecalories.url}/${email}/${date}`;
+        try {
+            const response = await fetch(url, {
+                method: SummaryApi.deletecalories.method,
+                credentials: 'include', // Include cookies or session
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                toast.success('Record deleted successfully!');
+                // Refresh the calorie records after deletion
+                fetchCalorieRecords();
+            } else {
+                toast.error(result.message || 'Failed to delete record.');
+            }
+        } catch (error) {
+            console.error('Error deleting record:', error);
+            toast.error('Error deleting record.');
+        }
+    };
+
+
     const fetchCalorieRecords = async () => {
         const url = `${SummaryApi.getcalories.url}/${email}`
         try {
@@ -228,6 +252,7 @@ const Health = () => {
             const dataApi = await dataresponse.json()
             if (dataApi.success) {
                 toast.success("Meal added successfully!");
+                setActiveSection('Calorie History')
             }
             else {
                 toast.error(dataApi.message)
@@ -347,88 +372,88 @@ const Health = () => {
 
                 {activeSection === 'dailyCalorieRequirement' && (
                     <div>
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h2 className="text-2xl font-bold mb-4">Daily Calorie Requirement</h2>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-gray-700 font-bold mb-2">Age</label>
-                                <input
-                                    type="number"
-                                    name="age"
-                                    className="border border-gray-300 rounded-md px-4 py-2 w-full"
-                                    placeholder="Enter your age"
-                                    value={formData.age}
-                                    onChange={handleInputChange}
-                                />
+                        <div className="bg-white p-6 rounded-lg shadow-md">
+                            <h2 className="text-2xl font-bold mb-4">Daily Calorie Requirement</h2>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-gray-700 font-bold mb-2">Age</label>
+                                    <input
+                                        type="number"
+                                        name="age"
+                                        className="border border-gray-300 rounded-md px-4 py-2 w-full"
+                                        placeholder="Enter your age"
+                                        value={formData.age}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-gray-700 font-bold mb-2">Gender</label>
+                                    <select
+                                        name="gender"
+                                        className="border border-gray-300 rounded-md px-4 py-2 w-full"
+                                        value={formData.gender}
+                                        onChange={handleInputChange}
+                                    >
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div>
-                                <label className="block text-gray-700 font-bold mb-2">Gender</label>
+                            <div className="grid grid-cols-2 gap-4 mt-4">
+                                <div>
+                                    <label className="block text-gray-700 font-bold mb-2">Height (cm)</label>
+                                    <input
+                                        type="number"
+                                        name="height"
+                                        className="border border-gray-300 rounded-md px-4 py-2 w-full"
+                                        placeholder="Enter height in cm"
+                                        value={formData.height}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-gray-700 font-bold mb-2">Weight (kg)</label>
+                                    <input
+                                        type="number"
+                                        name="weight"
+                                        className="border border-gray-300 rounded-md px-4 py-2 w-full"
+                                        placeholder="Enter weight in kg"
+                                        value={formData.weight}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
+                            </div>
+                            <div className="mb-4 mt-4">
+                                <label className="block text-gray-700 font-bold mb-2">Activity Level</label>
                                 <select
-                                    name="gender"
+                                    name="activityLevel"
                                     className="border border-gray-300 rounded-md px-4 py-2 w-full"
-                                    value={formData.gender}
+                                    value={formData.activityLevel}
                                     onChange={handleInputChange}
                                 >
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                    <option>Sedentary</option>
+                                    <option>Lightly Active</option>
+                                    <option>Moderately Active</option>
+                                    <option>Very Active</option>
                                 </select>
                             </div>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4 mt-4">
-                            <div>
-                                <label className="block text-gray-700 font-bold mb-2">Height (cm)</label>
-                                <input
-                                    type="number"
-                                    name="height"
-                                    className="border border-gray-300 rounded-md px-4 py-2 w-full"
-                                    placeholder="Enter height in cm"
-                                    value={formData.height}
-                                    onChange={handleInputChange}
-                                />
+                            <div className="text-center mt-4">
+                                <button
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={onDailyCalorieSubmit}
+                                >
+                                    Calculate Daily Calories
+                                </button>
                             </div>
-                            <div>
-                                <label className="block text-gray-700 font-bold mb-2">Weight (kg)</label>
-                                <input
-                                    type="number"
-                                    name="weight"
-                                    className="border border-gray-300 rounded-md px-4 py-2 w-full"
-                                    placeholder="Enter weight in kg"
-                                    value={formData.weight}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
+                            {result.dailyCalorieRequirement && (
+                                <div className="mt-4 text-center">
+                                    <pre className="bg-gray-100 p-4 rounded-md text-left">
+                                        {result.dailyCalorieRequirement}
+                                    </pre>
+                                </div>
+                            )}
                         </div>
-                        <div className="mb-4 mt-4">
-                            <label className="block text-gray-700 font-bold mb-2">Activity Level</label>
-                            <select
-                                name="activityLevel"
-                                className="border border-gray-300 rounded-md px-4 py-2 w-full"
-                                value={formData.activityLevel}
-                                onChange={handleInputChange}
-                            >
-                                <option>Sedentary</option>
-                                <option>Lightly Active</option>
-                                <option>Moderately Active</option>
-                                <option>Very Active</option>
-                            </select>
-                        </div>
-                        <div className="text-center mt-4">
-                            <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                onClick={onDailyCalorieSubmit}
-                            >
-                                Calculate Daily Calories
-                            </button>
-                        </div>
-                        {result.dailyCalorieRequirement && (
-                            <div className="mt-4 text-center">
-                                <pre className="bg-gray-100 p-4 rounded-md text-left">
-                                    {result.dailyCalorieRequirement}
-                                </pre>
-                            </div>
-                        )}
                     </div>
-                </div>
                 )}
 
 
@@ -454,28 +479,37 @@ const Health = () => {
                             </div>
                         </div>
                         <div id='hello'>
-                            {(calorieRecords.length > 0) ? (
-                                <table class="table-auto w-full rounded-md border border-gray-200 shadow">
-                                    <tr class="bg-gray-100 text-left text-xs font-medium uppercase tracking-wider">
-                                        <th class="px-4 py-2">Date</th>
-                                        <th class="px-4 py-2">Calories</th>
-                                    </tr>
-                                    {calorieRecords.map((record, index) => (
-                                        <tr class="bg-gray-100 text-left text-xs font-medium uppercase tracking-wider">
-                                            <th class="px-4 py-2" key={index}>
-                                                {record.date}
-                                            </th>
-                                            <th class="px-4 py-2" key={index}>
-                                                {record.caloriecount}
-                                            </th>
+                            {calorieRecords.length > 0 ? (
+                                <table className="table-auto w-full rounded-md border border-gray-200 shadow">
+                                    <thead>
+                                        <tr className="bg-gray-100 text-left text-xs font-medium uppercase tracking-wider">
+                                            <th className="px-4 py-2">Date</th>
+                                            <th className="px-4 py-2">Calories</th>
+                                            <th className="px-4 py-2">Actions</th>
                                         </tr>
-
-                                    ))}
+                                    </thead>
+                                    <tbody>
+                                        {calorieRecords.map((record, index) => (
+                                            <tr key={index} className="bg-gray-100 text-left text-xs font-medium uppercase tracking-wider">
+                                                <td className="px-4 py-2">{record.date}</td>
+                                                <td className="px-4 py-2">{record.caloriecount}</td>
+                                                <td className="px-4 py-2">
+                                                    <button
+                                                        onClick={() => handleDeleteRecord(record.date)}
+                                                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
                                 </table>
                             ) : (
                                 <p>No records found for this email.</p>
                             )}
                         </div>
+
 
 
                     </div>
