@@ -35,20 +35,22 @@ const Blood_Bank = () => {
 
     return (
         <div className="student-list">
-            <h2>Student Blood Information</h2>
-            <label htmlFor="blood-group">Filter by Blood Group:</label>
-            <select id="blood-group" onChange={handleBloodGroupChange}>
-                <option value="">All</option>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-            </select>
-            <table>
+            <div className='bg-white'>
+                <h2>Student Blood Information</h2>
+                <label htmlFor="blood-group">Filter by Blood Group:</label>
+                <select id="blood-group" onChange={handleBloodGroupChange}>
+                    <option value="">All</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+            <table className='table-auto border-collapse border-none bg-blue-100 w-full text-left'>
                 <thead>
                     <tr>
                         <th>Roll No</th>
@@ -59,7 +61,7 @@ const Blood_Bank = () => {
                 </thead>
                 <tbody>
                     {filteredStudents.map((student, index) => (
-                        <tr key={index}>
+                        <tr key={index} className="bg-blue-100 hover:bg-blue-200 transition-all transition-transform-15000ms">
                             <td>{student.roll_number}</td>
                             <td>{student.name}</td>
                             <td>{student.phone}</td>

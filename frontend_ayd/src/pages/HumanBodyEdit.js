@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './HumanBody.css';
 import SummaryApi from '../common';
 import InfoBoxEdit from '../components/InfoBoxEdit';
+import { toast } from 'react-toastify';
 
 const HumanBodyEdit = () => {
     const [info, setInfo] = useState({ position: '', x: 0, y: 0, cut: '', pain: '', swell: '' });
@@ -11,7 +12,9 @@ const HumanBodyEdit = () => {
             const response = await fetch(SummaryApi.human_Body.url + "/" + position, {
                 method: SummaryApi.human_Body.method
             });
+            console.log(response)
             const data = await response.json();
+            console.log(data)
             return data;
         } catch (error) {
             console.error('Error fetching body part details:', error);
@@ -54,6 +57,7 @@ const HumanBodyEdit = () => {
             .then(data => console.log('Success:', data))
             .catch(error => console.error('Error:', error));
         handleClose();
+        toast.success("Details Updated Successfully")
     };
     useEffect(() => {
         const fetchData = async () => {
