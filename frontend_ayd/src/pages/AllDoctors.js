@@ -97,7 +97,7 @@ const AllDoctors = () => {
             )}
 
             {openEditDoctor && (
-                <EditDoctor doctorId={doctorId} onClose={() => setOpenEditDoctor(false)} fetchDoctors={fetchDoctors()} />
+                <EditDoctor doctorId={doctorId} onClose={() => setOpenEditDoctor(false)} fetchDoctors={fetchDoctors} />
             )}
         </div>
     );

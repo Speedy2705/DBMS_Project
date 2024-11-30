@@ -65,7 +65,11 @@ const SummaryApi = {
     getstudents:{
         url: `${backendDomain}/api/students`,
         method: 'get'
-    }
+    },
+    deletecalories: {
+        url:`${backendDomain}/api/calories`,
+        method: 'DELETE',
+    },
 
 }
 
