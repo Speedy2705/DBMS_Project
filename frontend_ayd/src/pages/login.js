@@ -46,7 +46,7 @@ const Login = () => {
     if (dataApi.success) {
       toast.success(dataApi.message)
       localStorage.setItem("authToken", dataApi.token);
-      navigate('/healthtracker')
+      navigate('/profile')
     }
 
     if (dataApi.error) {
@@ -91,9 +91,6 @@ const Login = () => {
           <Link to={"/signup"} class="text-gray-400 hover:text-gray-600 font-semibold z-10">Don't have an account? Sign up here</Link>
         </div>
       </div>
-      <ToastContainer
-        position='top-right'
-      />
 
     </div>
   )

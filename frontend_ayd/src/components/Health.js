@@ -45,26 +45,45 @@ const Health = () => {
     }
 
 
+    const [formData, setFormData] = useState({
+        age: '',
+        gender: 'Male',
+        activityLevel: 'Sedentary',
+        height: '',
+        weight: '',
+    });
+    const [result, setResult] = useState({ dailyCalorieRequirement: null });
 
-    function onDailyCalorieSubmit(data) {
-        let bmr
-        if (data.gender === "male") {
-            bmr = 88.362 + (13.397 * data.weight) + (4.799 * data.height) - (5.677 * data.age)
-        } else {
-            bmr = 447.593 + (9.247 * data.weight) + (3.098 * data.height) - (4.330 * data.age)
-        }
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    const onDailyCalorieSubmit = () => {
+        const { age, gender, activityLevel, height, weight } = formData;
+        const bmr =
+            gender === 'Male'
+                ? 88.362 + 13.397 * parseFloat(weight) + 4.799 * parseFloat(height) - 5.677 * parseInt(age)
+                : 447.593 + 9.247 * parseFloat(weight) + 3.098 * parseFloat(height) - 4.330 * parseInt(age);
 
         const activityFactors = {
-            sedentary: 1.2,
-            light: 1.375,
-            moderate: 1.55,
-            active: 1.725,
-            "very-active": 1.9,
-        }
+            Sedentary: 1.2,
+            'Lightly Active': 1.375,
+            'Moderately Active': 1.55,
+            'Very Active': 1.725,
+        };
 
-        const dailyCalories = (bmr * activityFactors[data.activityLevel]).toFixed(0)
-        setDailyCalorieRequirement(dailyCalories)
-    }
+        const dailyCalories = (bmr * activityFactors[activityLevel]).toFixed(0);
+
+        // Store result in JSON format
+        setResult({
+            ...formData,
+            dailyCalorieRequirement: dailyCalories,
+        });
+    };
 
 
 
@@ -327,24 +346,66 @@ const Health = () => {
                 )}
 
                 {activeSection === 'dailyCalorieRequirement' && (
+                    <div>
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <h2 className="text-2xl font-bold mb-4">Daily Calorie Requirement</h2>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-gray-700 font-bold mb-2">Age</label>
-                                <input type="number" className="border border-gray-300 rounded-md px-4 py-2 w-full" placeholder="Enter your age" />
+                                <input
+                                    type="number"
+                                    name="age"
+                                    className="border border-gray-300 rounded-md px-4 py-2 w-full"
+                                    placeholder="Enter your age"
+                                    value={formData.age}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                             <div>
                                 <label className="block text-gray-700 font-bold mb-2">Gender</label>
-                                <select className="border border-gray-300 rounded-md px-4 py-2 w-full">
+                                <select
+                                    name="gender"
+                                    className="border border-gray-300 rounded-md px-4 py-2 w-full"
+                                    value={formData.gender}
+                                    onChange={handleInputChange}
+                                >
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
                             </div>
                         </div>
-                        <div className="mb-4">
+                        <div className="grid grid-cols-2 gap-4 mt-4">
+                            <div>
+                                <label className="block text-gray-700 font-bold mb-2">Height (cm)</label>
+                                <input
+                                    type="number"
+                                    name="height"
+                                    className="border border-gray-300 rounded-md px-4 py-2 w-full"
+                                    placeholder="Enter height in cm"
+                                    value={formData.height}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-gray-700 font-bold mb-2">Weight (kg)</label>
+                                <input
+                                    type="number"
+                                    name="weight"
+                                    className="border border-gray-300 rounded-md px-4 py-2 w-full"
+                                    placeholder="Enter weight in kg"
+                                    value={formData.weight}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                        </div>
+                        <div className="mb-4 mt-4">
                             <label className="block text-gray-700 font-bold mb-2">Activity Level</label>
-                            <select className="border border-gray-300 rounded-md px-4 py-2 w-full">
+                            <select
+                                name="activityLevel"
+                                className="border border-gray-300 rounded-md px-4 py-2 w-full"
+                                value={formData.activityLevel}
+                                onChange={handleInputChange}
+                            >
                                 <option>Sedentary</option>
                                 <option>Lightly Active</option>
                                 <option>Moderately Active</option>
@@ -352,9 +413,22 @@ const Health = () => {
                             </select>
                         </div>
                         <div className="text-center mt-4">
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Calculate Daily Calories</button>
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                onClick={onDailyCalorieSubmit}
+                            >
+                                Calculate Daily Calories
+                            </button>
                         </div>
+                        {result.dailyCalorieRequirement && (
+                            <div className="mt-4 text-center">
+                                <pre className="bg-gray-100 p-4 rounded-md text-left">
+                                    {result.dailyCalorieRequirement}
+                                </pre>
+                            </div>
+                        )}
                     </div>
+                </div>
                 )}
 
 

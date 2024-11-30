@@ -31,17 +31,13 @@ function App() {
   useEffect(()=>{
     /*user Details */
     fetchUserDetails()
-    
   },[])
-  
   return (
     <>
       <Context.Provider value={{
         fetchUserDetails,
       }}>
-      <ToastContainer
-        position='top-center'
-      />
+      <ToastContainer position='top-center' className="z-1000"/>
       <Navbar/>
       <main className='min-h-[calc(100vh-120px)] pt-16'>
         <Outlet/>

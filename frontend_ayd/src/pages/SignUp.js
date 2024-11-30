@@ -149,9 +149,6 @@ const SignUp = () => {
                     <Link to={"/login"} class="text-gray-400 hover:text-gray-600 font-semibold z-10">Already have an account? Login here</Link>
                 </div>
             </div>
-            <ToastContainer
-                position='top-right'
-            />
         </div>
     )
 }
