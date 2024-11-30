@@ -5,12 +5,12 @@ import NearbyDoctors from '../pages/NearbyDoctors'
 import Profile from '../pages/Profile'
 import Home from '../pages/home'
 import App from '../App'
-import Health from '../pages/Health.js'
 import CalorieRecords from '../pages/sample.js'
 import AdminPanel from '../pages/AdminPanel.js'
 import AllUsers from '../pages/AllUsers.js'
 import AllDoctors from '../pages/AllDoctors.js'
 import HumanBodyEdit from '../pages/HumanBodyEdit.js'
+import Blood_Bank from '../pages/Blood_Bank.js'
 
 const router = createBrowserRouter([
     {
@@ -38,11 +38,12 @@ const router = createBrowserRouter([
                 element: <Profile />
             },
             {
-                path:"healthTracker",
-                element:<Health/>
-            },{
                 path:"test",
                 element:<CalorieRecords/>
+            },
+            {
+                path:"blood-bank",
+                element: <Blood_Bank/>
             },
             {
                 path : "admin-panel",
