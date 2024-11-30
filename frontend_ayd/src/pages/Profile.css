@@ -48,9 +48,3 @@ input[type="date"] {
     overflow: hidden;
     margin: auto;
 }
-
-.photobox img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}

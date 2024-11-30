@@ -92,6 +92,13 @@ const Navbar = () => {
             {menuDisplay && (
               <div className='absolute z-50 bg-white top-12 right-0 h-fit p-2 shadow-lg rounded'>
                 <nav>
+                  <Link
+                    to={"/profile"}
+                    className='block whitespace-nowrap hover:bg-slate-100 p-2'
+                    onClick={() => setMenuDisplay(false)}
+                  >
+                    Profile
+                  </Link>
                   {user?.role === ROLE.ADMIN && (
                     <Link
                       to={"/admin-panel/all-users"}
