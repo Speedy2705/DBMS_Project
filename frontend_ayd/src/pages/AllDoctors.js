@@ -57,7 +57,7 @@ const AllDoctors = () => {
     }, []);
 
     return (
-        <div>
+        <div >
             <button
                 className='border-2 py-1 rounded-full px-3 border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition-all'
                 onClick={() => setOpenAddDoctor(true)}
@@ -66,7 +66,7 @@ const AllDoctors = () => {
             </button>
 
             <div className="container mx-auto p-4">
-                <h1 className="text-4xl font-bold mb-4 text-center">Doctor List</h1>
+                <h1 className="text-4xl font-bold mb-4 text-center pb-5">Doctor List</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {doctors.map((doctor) => (
                         <div key={doctor.doctor_id} className="bg-white group shadow-md border flex flex-col justify-between rounded-lg p-4">
