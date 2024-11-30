@@ -96,7 +96,7 @@ const HumanBodyEdit = () => {
                         <InfoBoxEdit
                             position={info.position}
                             x={-350}
-                            y={-140}
+                            y={-180}
                             cut={info.cut}
                             pain={info.pain}
                             swell={info.swell}
