@@ -92,7 +92,7 @@ const NearbyDoctors = () => {
                     <div id="doctorsList" className="space-y-4">
                         {doctors.map((doc) => (
                             <div key={doc.id} className="p-4 bg-gray-50 border border-gray-200 rounded-lg flex items-center gap-10 space-x-4">
-                                <img src={doc.image} alt={doc.name} className="w-24 h-24 ml-5 rounded-full object-cover" />
+                                <img src={doc.image || 'askurdoc.jpg'} alt={doc.name} className="w-24 h-24 ml-5 rounded-full object-cover" />
                                 <div>
                                     <h4 className="text-lg font-semibold text-charcoal">{doc.full_name}</h4>
                                     <p className="text-gray-600">
