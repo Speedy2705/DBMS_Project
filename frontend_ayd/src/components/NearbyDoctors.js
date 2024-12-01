@@ -47,7 +47,7 @@ const NearbyDoctors = () => {
 
     return (
         <div className="flex items-center justify-around gap-11 bg-gradient p-6">
-            <div className="bg-white p-8 md:p-12 rounded-3xl w-[calc(600px)] max-w-4xl shadow-lg space-y-8">
+            <div className="bg-white ml-[calc(-150px)] p-8 md:p-12 rounded-3xl w-[calc(600px)] max-w-4xl shadow-lg space-y-8">
                 <h2 className="text-3xl font-semibold text-center text-charcoal">Contact Nearby Doctors</h2>
                 <p className="text-center text-gray-600">Find and reach out to doctors near your location</p>
 

@@ -81,11 +81,11 @@ const Navbar = () => {
             )}
 
             {menuDisplay && (
-              <div className='absolute z-50 bg-white top-12 right-0 h-fit p-2 shadow-lg rounded'>
+              <div className='absolute z-50 bg-white top-12 right-0 h-fit shadow-lg rounded'>
                 <nav>
                   <Link
                     to={"/profile"}
-                    className='block whitespace-nowrap hover:bg-slate-100 p-2'
+                    className='block whitespace-nowrap hover:bg-blue-100 p-2'
                     onClick={() => setMenuDisplay(false)}
                   >
                     Profile
@@ -93,7 +93,7 @@ const Navbar = () => {
                   {user?.role === ROLE.ADMIN && (
                     <Link
                       to={"/admin-panel/all-users"}
-                      className='block whitespace-nowrap hover:bg-slate-100 p-2'
+                      className='block whitespace-nowrap hover:bg-blue-100 p-2'
                       onClick={() => setMenuDisplay(false)}
                     >
                       Admin Panel
@@ -106,7 +106,7 @@ const Navbar = () => {
           <div>
             <Link
               to={"/blood-bank"}
-              className='px-4 py-2 rounded-full text-white bg-blue-600 hover:bg-blue-700 transition duration-300'
+              className='px-4 py-2 rounded-full text-black hover:text-white bg-white border-2 border-blue-600 hover:bg-blue-700 transition duration-300'
             >
               Blood Bank
             </Link>
@@ -117,14 +117,14 @@ const Navbar = () => {
             {user?._id ? (
               <button
                 onClick={handleLogout}
-                className='px-4 py-2 rounded-full text-white bg-red-600 hover:bg-red-700 transition duration-300'
+                className='px-4 py-2 rounded-full text-black hover:text-white bg-white border-2 border-red-600 hover:bg-red-700 transition duration-300'
               >
                 Logout
               </button>
             ) : (
               <Link
                 to={"login"}
-                className='px-4 py-2 rounded-full text-white bg-red-600 hover:bg-red-700 transition duration-300'
+                className='px-4 py-2 rounded-full text-black hover:text-white bg-white border-2 border-red-600 hover:bg-red-700 transition duration-300'
               >
                 Login
               </Link>
