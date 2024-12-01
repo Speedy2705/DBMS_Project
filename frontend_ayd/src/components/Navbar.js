@@ -55,8 +55,7 @@ const Navbar = () => {
       <div className='h-full container mx-auto flex items-center px-4 justify-between'>
         {/* Logo Section */}
         <div className='flex items-center'>
-          <Link to={"/"}>
-             <img src='askurdoc_remove_bg.png' className='h-16' />
+          <Link to={"/"}><img src="https://i.ibb.co/jRHd3Ns/askurdoc-remove-bg.png" alt="askurdoc-remove-bg" border="0" className='h-16' />
           </Link>
         </div>
 
@@ -76,7 +75,7 @@ const Navbar = () => {
                     alt={user?.name}
                   />
                 ) : (
-                  <FaRegCircleUser  className='text-gray-600' />
+                  <FaRegCircleUser className='text-gray-600' />
                 )}
               </div>
             )}

@@ -49,6 +49,10 @@ const AddDoctor = ({
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if(data.contact.length<10 || data.contact.length>10){
+            toast.error("Enter a valid phone number");
+            return;
+        }
 
         const response = await fetch(SummaryApi.addDoctor.url, {
             method: SummaryApi.addDoctor.method,
