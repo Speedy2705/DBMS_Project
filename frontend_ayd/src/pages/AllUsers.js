@@ -70,7 +70,7 @@ const AllUsers = () => {
                 <td>{moment(el?.createdAt).format('ll')}</td>
                 <td>
                   <button
-                    classusername="bg-green-100 p-2 rounded-full hover:bg-green-500 hover:text-white"
+                    className="bg-green-100 p-2 rounded-full hover:bg-green-500 hover:text-white"
                     onClick={() => {
                       setUpdateUserDetails(el);
                       setOpenUpdateRole(true);
