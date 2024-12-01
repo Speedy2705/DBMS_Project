@@ -98,6 +98,7 @@ const NearbyDoctors = () => {
                                     <p className="text-gray-600">
                                         {doc.specialist ? (doc.specialist.charAt(0).toUpperCase() + doc.specialist.slice(1)) : ''}
                                     </p>
+                                    <p className="text-gray-600">{doc.distance}</p>
                                     <p className="text-gray-600">{doc.contact}</p>
                                     <p className="text-gray-600">{doc.address}</p>
                                 </div>
