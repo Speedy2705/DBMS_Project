@@ -36,6 +36,8 @@ const Health = () => {
             const
                 data = { height, weight };
             onBmiSubmit(data);
+            setHeight(0)
+            setWeight(0)
         };
 
     function onBmiSubmit(data) {
@@ -60,6 +62,7 @@ const Health = () => {
             ...prevState,
             [name]: value,
         }));
+
     };
 
     const onDailyCalorieSubmit = () => {
@@ -83,6 +86,13 @@ const Health = () => {
             ...formData,
             dailyCalorieRequirement: dailyCalories,
         });
+        setFormData({
+            age: '',
+            gender: 'Male',
+            activityLevel: 'Sedentary',
+            height: '',
+            weight: '',
+        })
     };
 
 
@@ -154,6 +164,7 @@ const Health = () => {
                 setIsAuthenticated(false);
             }
         };
+        fetchCalorieRecords()
 
         fetchUserDetails();
     }, []);
@@ -268,6 +279,7 @@ const Health = () => {
         const total = meals.reduce((acc, meal) => acc + meal.calories, 0);
         setTotalCalories(total);
         data1.caloriecount = total
+
 
         console.log(data1)
     }, [meals]);

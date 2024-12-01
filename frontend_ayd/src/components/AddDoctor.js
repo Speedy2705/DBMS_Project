@@ -53,6 +53,10 @@ const AddDoctor = ({
             toast.error("Enter a valid phone number");
             return;
         }
+        if(data.pincode.length!=6){
+            toast.error("Enter a valid pincode");
+            return;
+        }
 
         const response = await fetch(SummaryApi.addDoctor.url, {
             method: SummaryApi.addDoctor.method,
@@ -108,7 +112,7 @@ const AddDoctor = ({
                         name='full_name'
                         value={data.full_name}
                         onChange={handleChange}
-                        className='py-2 px-3 border rounded-xl'
+                        className='text-black py-2 px-3 border rounded-xl'
                         required
                     />
 
@@ -120,11 +124,11 @@ const AddDoctor = ({
                         name='distance'
                         value={data.distance}
                         onChange={handleChange}
-                        className='py-2 px-3 border rounded-xl'
+                        className='text-black py-2 px-3 border rounded-xl'
                     />
 
                     <label htmlFor='speciality' className='text-black mt-3'>Speciality :</label>
-                    <select required value={data.speciality} name='speciality' onChange={handleChange} className='py-2 px-3 border rounded-xl text-slate-400'>
+                    <select required value={data.speciality} name='speciality' onChange={handleChange} className='py-2 px-3 border rounded-xl text-black'>
                         <option value={""}>select speciality</option>
                         {
                             bodyParts.map((el, index) => {
@@ -144,7 +148,7 @@ const AddDoctor = ({
                         name='contact'
                         value={data.contact}
                         onChange={handleChange}
-                        className='py-2 px-3 border rounded-xl'
+                        className='text-black py-2 px-3 border rounded-xl'
                     />
 
                     <label htmlFor='pincode' className='text-black mt-3'>Pincode :</label>
@@ -156,12 +160,12 @@ const AddDoctor = ({
                         name='pincode'
                         value={data.pincode}
                         onChange={handleChange}
-                        className='py-2 border rounded-xl px-3'
+                        className='text-black py-2 border rounded-xl px-3'
                     />
 
                     <label htmlFor='address' className='text-black mt-3'>Address :</label>
                     <textarea
-                        className='h-28 border resize-none px-3 py-2 rounded-xl'
+                        className='text-black h-28 border resize-none px-3 py-2 rounded-xl'
                         placeholder='enter doctor address'
                         rows={3} cols={5}
                         value={data.address}
