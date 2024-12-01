@@ -59,7 +59,7 @@ const Blood_Bank = () => {
     return (
         <div className="student-list">
             <div className="bg-white">
-                <h2>Student Blood Information</h2>
+                <h2 className='text-blue-600 text-2xl font-bold py-3'>Student Blood Information</h2>
                 <label htmlFor="blood-group">Filter by Blood Group:</label>
                 <select id="blood-group" onChange={handleBloodGroupChange}>
                     <option value="">All</option>
@@ -76,15 +76,15 @@ const Blood_Bank = () => {
             <table className="table-auto border-collapse border-none bg-blue-100 w-full text-left">
                 <thead>
                     <tr>
-                        <th>Roll No</th>
-                        <th>Name</th>
-                        <th>Phone Number</th>
-                        <th>Blood Group</th>
+                        <th className='bg-blue-200'>Roll No</th>
+                        <th className='bg-blue-200'>Name</th>
+                        <th className='bg-blue-200'>Phone Number</th>
+                        <th className='bg-blue-200'>Blood Group</th>
                     </tr>
                 </thead>
                 <tbody>
                     {paginatedStudents.map((student, index) => (
-                        <tr key={index} className="bg-blue-100 hover:bg-blue-200 transition-all duration-200">
+                        <tr key={index} className="hover:bg-blue-100 bg-white transition-all duration-200">
                             <td>{student.roll_number}</td>
                             <td>{student.name}</td>
                             <td>{student.phone}</td>
@@ -101,7 +101,7 @@ const Blood_Bank = () => {
                     onClick={handlePreviousPage}
                     disabled={currentPage === 1}
                     className={`px-4 py-2 mx-1 border rounded-md ${
-                        currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-300 transition-all duration-300'
+                        currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-100 transition-all duration-300'
                     }`}
                 >
                     <svg
@@ -123,7 +123,7 @@ const Blood_Bank = () => {
                     className={`px-4 py-2 mx-1 border rounded-md ${
                         currentPage === totalPages || totalPages === 0
                             ? 'opacity-50 cursor-not-allowed'
-                            : 'hover:bg-blue-300 transition-all duration-300'
+                            : 'hover:bg-blue-100 transition-all duration-300'
                     }`}
                 >
                     <svg

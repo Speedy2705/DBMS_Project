@@ -59,7 +59,7 @@ const AllDoctors = () => {
     return (
         <div >
             <button
-                className='border-2 py-1 rounded-full px-3 border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition-all'
+                className='border-2 py-1 rounded-full px-3 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all'
                 onClick={() => setOpenAddDoctor(true)}
             >
                 Add Doctor
@@ -72,7 +72,7 @@ const AllDoctors = () => {
                         <div key={doctor.doctor_id} className="bg-white group shadow-md border flex flex-col justify-between rounded-lg p-4">
                             <div>
                                 {doctor.image && <img src={doctor.image} alt={doctor.full_name} className="w-full h-40 object-cover rounded-t-lg mb-4" />}
-                                <h2 className="text-2xl font-bold mb-2">{doctor.full_name}</h2>
+                                <h2 className="text-2xl text-blue-600 font-bold mb-2">{doctor.full_name}</h2>
                                 <p className="text-gray-700 mb-1"><strong>Speciality:</strong> {doctor.speciality}</p>
                                 <p className="text-gray-700 mb-1"><strong>Distance:</strong> {doctor.distance}</p>
                                 <p className="text-gray-700 mb-1"><strong>Contact:</strong> {doctor.contact}</p>

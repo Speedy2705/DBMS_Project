@@ -43,21 +43,21 @@ const AllUsers = () => {
   }, []);
 
   return (
-    <div classusername="bg-white pb-4">
+    <div className="bg-white pb-4">
       {/* Loader */}
-      {loading && <div classusername="text-center py-4">Loading...</div>}
+      {loading && <div className="text-center py-4">Loading...</div>}
 
       {/* Users Table */}
       {!loading && allUser.length > 0 ? (
-        <table classusername="w-full userTable">
-          <thead>
-            <tr classusername="bg-black text-white">
-              <th>Sr.</th>
-              <th>username</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Created Date</th>
-              <th>Action</th>
+        <table className="w-full userTable">
+          <thead className='bg-blue-200'>
+            <tr className="text-black">
+              <th className='bg-blue-200'>Sr.</th>
+              <th className='bg-blue-200'>User</th>
+              <th className='bg-blue-200'>Email</th>
+              <th className='bg-blue-200'>Role</th>
+              <th className='bg-blue-200'>Created Date</th>
+              <th className='bg-blue-200'>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -84,7 +84,7 @@ const AllUsers = () => {
           </tbody>
         </table>
       ) : (
-        !loading && <div classusername="text-center py-4">No users found.</div>
+        !loading && <div className="text-center py-4">No users found.</div>
       )}
 
       {/* Change User Role Modal */}

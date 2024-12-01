@@ -79,10 +79,10 @@ const AddDoctor = ({
 
     return (
         <div className='text-white fixed w-full h-full top-0 left-0 flex justify-center items-center backdrop-blur-sm'>
-            <div className='bg-black p-4 rounded-3xl w-full max-w-2xl h-full max-h-[80%] overflow-hidden'>
+            <div className='p-4 rounded-3xl w-full max-w-2xl h-full max-h-[80%] overflow-hidden' style={{ background: 'linear-gradient(to top, #E3F2FD, #90CAF9)' }}>
 
                 <div className='flex justify-between items-center pb-3'>
-                    <h2 className='font-bold text-lg'>Add Doctor</h2>
+                    <h2 className='font-bold text-2xl text-black'>Add Doctor</h2>
                     <div className='w-fit ml-auto text-2xl hover:text-red-600 cursor-pointer' onClick={onClose}>
                         <CgClose />
                     </div>
@@ -93,14 +93,14 @@ const AddDoctor = ({
                     <label htmlFor='image' className='mt-3'></label>
                     <label htmlFor='uploadImageInput'>
                         <div class="flex justify-center">
-                            <div class="photo-box relative w-24 h-24 rounded-full shadow-inner overflow-hidden flex items-center justify-center">
+                            <div class="photo-box relative border border-gray-700 w-24 h-24 rounded-full shadow-inner overflow-hidden flex items-center justify-center">
                                 <img id="profile-pic" src='profile_gif.gif' alt="Profile Picture" class="w-full h-full object-cover absolute top-0 left-0 z-5 blur-sm" />
                                 <input type="file" id="uploadImageInput" name="image" accept="image/*" onChange={handleUploadPic} class="absolute w-full h-full opacity-0 cursor-pointer z-10 bg-transparent" />
                             </div>
                         </div>
                     </label>
 
-                    <label htmlFor='full_name'>Doctor Name :</label>
+                    <label className='text-black' htmlFor='full_name'>Doctor Name :</label>
                     <input
                         type='text'
                         id='full_name'
@@ -108,11 +108,11 @@ const AddDoctor = ({
                         name='full_name'
                         value={data.full_name}
                         onChange={handleChange}
-                        className='py-2 px-3 bg-slate-900 border rounded-xl'
+                        className='py-2 px-3 border rounded-xl'
                         required
                     />
 
-                    <label htmlFor='distance' className='mt-3'>Distance :</label>
+                    <label htmlFor='distance' className='text-black mt-3'>Distance :</label>
                     <input
                         type='text'
                         id='distance'
@@ -120,11 +120,11 @@ const AddDoctor = ({
                         name='distance'
                         value={data.distance}
                         onChange={handleChange}
-                        className='py-2 px-3 bg-slate-900 border rounded-xl'
+                        className='py-2 px-3 border rounded-xl'
                     />
 
-                    <label htmlFor='speciality' className='mt-3'>Speciality :</label>
-                    <select required value={data.speciality} name='speciality' onChange={handleChange} className='py-2 px-3 bg-slate-900 border rounded-xl text-slate-400'>
+                    <label htmlFor='speciality' className='text-black mt-3'>Speciality :</label>
+                    <select required value={data.speciality} name='speciality' onChange={handleChange} className='py-2 px-3 border rounded-xl text-slate-400'>
                         <option value={""}>select speciality</option>
                         {
                             bodyParts.map((el, index) => {
@@ -135,7 +135,7 @@ const AddDoctor = ({
                         }
                     </select>
 
-                    <label htmlFor='contact' className='mt-3'>Contact Details :</label>
+                    <label htmlFor='contact' className='text-black mt-3'>Contact Details :</label>
                     <input
                         required
                         type='number'
@@ -144,10 +144,10 @@ const AddDoctor = ({
                         name='contact'
                         value={data.contact}
                         onChange={handleChange}
-                        className='py-2 px-3 bg-slate-900 border rounded-xl'
+                        className='py-2 px-3 border rounded-xl'
                     />
 
-                    <label htmlFor='pincode' className='mt-3'>Pincode :</label>
+                    <label htmlFor='pincode' className='text-black mt-3'>Pincode :</label>
                     <input
                         required
                         type='number'
@@ -156,12 +156,12 @@ const AddDoctor = ({
                         name='pincode'
                         value={data.pincode}
                         onChange={handleChange}
-                        className='py-2 bg-slate-900 border rounded-xl px-3'
+                        className='py-2 border rounded-xl px-3'
                     />
 
-                    <label htmlFor='address' className='mt-3'>Address :</label>
+                    <label htmlFor='address' className='text-black mt-3'>Address :</label>
                     <textarea
-                        className='h-28 bg-slate-900 border resize-none px-3 py-2 rounded-xl'
+                        className='h-28 border resize-none px-3 py-2 rounded-xl'
                         placeholder='enter doctor address'
                         rows={3} cols={5}
                         value={data.address}
@@ -171,7 +171,7 @@ const AddDoctor = ({
 
                     </textarea>
 
-                    <button className='px-3 py-2 bg-red-600 text-white mb-10 hover:bg-red-700'>Add Doctor</button>
+                    <button className='px-3 py-2 bg-blue-600 text-white mb-10 hover:bg-blue-700 rounded-xl mt-4'>Add Doctor</button>
                 </form>
 
             </div>

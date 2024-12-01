@@ -2,7 +2,7 @@ import React from 'react';
 
 const InfoBox = ({ position, x, y, cut, pain, swell, onClose }) => {
     return (
-        <div className="animate-pop-up relative w-56 bg-white border border-gray-300 p-5 z-[calc(100)]" style={{ top: y, left: x }}>
+        <div className="animate-pop-up relative w-56 bg-white border rounded-3xl border-gray-600 p-5 z-[calc(100)]" style={{ top: y, left: x }}>
             
             <div className='relative w-full flex justify-between'>
             <strong className='capitalize text-2xl'>{position}</strong>
